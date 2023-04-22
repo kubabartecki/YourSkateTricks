@@ -14,6 +14,10 @@ import java.util.Set;
 @NoArgsConstructor
 public class Difficulty {
 
+    public Difficulty(int id){
+        this.id = id;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+
 import pl.sk8.trickslist.current_trick.CurrentTrick;
 import pl.sk8.trickslist.difficulty.Difficulty;
 
@@ -13,13 +15,15 @@ import java.util.Set;
 @Table(name = "trick")
 @Data
 @NoArgsConstructor
+@RequiredArgsConstructor
 public class Trick {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @NonNull
-    @Column
+    @Column(unique = true)
     private String name;
 
     @ManyToOne
@@ -27,5 +31,5 @@ public class Trick {
     private Difficulty difficulty;
 
     @OneToMany(mappedBy = "trick")
-    private Set<CurrentTrick> currentTricks;// = new HashSet<CurrentTrick>();
+    private Set<CurrentTrick> currentTricks;
 }

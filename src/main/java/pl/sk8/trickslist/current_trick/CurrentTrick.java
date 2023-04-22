@@ -3,12 +3,16 @@ package pl.sk8.trickslist.current_trick;
 import jakarta.persistence.*;
 
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import pl.sk8.trickslist.trick.Trick;
 import pl.sk8.trickslist.user.User;
 
 @Entity
 @Table(name="current_trick")
+@Data
+@NoArgsConstructor
 public class CurrentTrick {
 
     @Id
