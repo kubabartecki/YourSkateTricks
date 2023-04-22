@@ -29,4 +29,8 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private Set<CurrentTrick> currentTricks;
+
+    public boolean correctPassword(String password){
+        return this.password.equals(password);
+    }
 }
