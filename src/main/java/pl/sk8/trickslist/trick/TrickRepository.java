@@ -6,6 +6,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface TrickRepository extends JpaRepository<Trick, Long> {
-    public List<Trick> findByName(String name);
-    public Optional<Trick> findById(int id);
+    List<Trick> findByName(String name);
+    Optional<Trick> findById(int id);
 }

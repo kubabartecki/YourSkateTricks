@@ -23,7 +23,7 @@ public class UserController {
         if(userFromDb.isPresent())
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
 
-        if(userFromDb.get().getPassword() == null)
+        if(user.getPassword() == null)//todo
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 
         User savedUser = userRepository.save(user);
@@ -42,7 +42,7 @@ public class UserController {
 
         if(userFromDb.isEmpty() || !user.correctPassword(userFromDb.get().getPassword()))
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        
+
         return ResponseEntity.ok().build();
     }
 }
