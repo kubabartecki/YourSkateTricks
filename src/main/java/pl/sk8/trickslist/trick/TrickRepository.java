@@ -8,4 +8,6 @@ import java.util.Optional;
 public interface TrickRepository extends JpaRepository<Trick, Long> {
     List<Trick> findByName(String name);
     Optional<Trick> findById(int id);
+
+    List<Trick> findByDifficultyId(int id);
 }

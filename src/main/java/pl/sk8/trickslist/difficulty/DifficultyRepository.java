@@ -6,4 +6,5 @@ import java.util.Optional;
 
 public interface DifficultyRepository extends JpaRepository<Difficulty, Long> {
     Optional<Difficulty> findById(int id);
+    Optional<Difficulty> findByName(String name);
 }

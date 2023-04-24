@@ -26,10 +26,10 @@ public class TrickController {
         List<Trick> tricksFromDb = trickRepository.findByName(trickBody.getName());
 
         if(trickBody.getName() == null)
-            return ResponseEntity.status((HttpStatus.NO_CONTENT)).build();
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 
         if(!tricksFromDb.isEmpty())
-            return ResponseEntity.status((HttpStatus.CONFLICT)).build();
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
 
         if(trickBody.getDifficulty() != null){
             Optional<Difficulty> difficulty = difficultyRepository.
