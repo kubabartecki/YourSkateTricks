@@ -20,6 +20,7 @@ public class TrickController {
 
     @Autowired
     DifficultyRepository difficultyRepository;
+
     @PostMapping
     public ResponseEntity addTrick(@RequestBody Trick trickBody){
         Trick trickNew = new Trick(trickBody.getName());
