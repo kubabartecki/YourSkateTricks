@@ -30,6 +30,9 @@ public class User {
     @OneToMany(mappedBy = "user")
     private Set<CurrentTrick> currentTricks;
 
+    @Column
+    private String roles;
+
     public boolean correctPassword(String password){
         return this.password.equals(password);
     }
