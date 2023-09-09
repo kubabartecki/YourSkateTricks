@@ -1,2 +1,6 @@
-package pl.sk8.trickslist.user;public record UserDTO() {
+package pl.sk8.trickslist.user;
+
+import java.util.List;
+
+public record UserDTO(String name, List<String> roles) {
 }
