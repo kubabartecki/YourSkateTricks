@@ -17,6 +17,7 @@ public class MyErrorController implements ErrorController {
         if (status != null) {
             appendix = status.toString();
         }
-        return errorMessagePrefix + appendix;
+        return errorMessagePrefix + appendix + "\n" +
+                request.getAttribute(RequestDispatcher.ERROR_MESSAGE).toString();
     }
 }
