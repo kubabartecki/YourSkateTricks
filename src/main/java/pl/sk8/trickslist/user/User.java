@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import pl.sk8.trickslist.current_trick.CurrentTrick;
+import pl.sk8.trickslist.role.Role;
 
 import java.util.Set;
 
@@ -17,6 +18,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private int id;
 
     @NonNull
@@ -30,10 +32,22 @@ public class User {
     @OneToMany(mappedBy = "user")
     private Set<CurrentTrick> currentTricks;
 
+    @NonNull
     @Column
-    private String roles;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "user_role_junction",
+            joinColumns = {@JoinColumn(name="user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id")}
+    )
+    private Set<Role> roles;
 
-    public boolean correctPassword(String password){
+    public User (String username, String password, Set<Role> roles){
+        this.username = username;
+        this.password = password;
+        this.roles = roles;
+    }
+    public boolean correctPassword(String password) {
         return this.password.equals(password);
     }
 }

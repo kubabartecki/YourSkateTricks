@@ -7,23 +7,21 @@ import pl.sk8.trickslist.user.User;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class MyUserDetails implements UserDetails {
 
     private String username;
     private String password;
-    private List<GrantedAuthority> authorities;
+    private Set<? extends GrantedAuthority> authorities;
 
     private boolean active;
 
     public MyUserDetails(User user){
         this.username = user.getUsername();
         this.password = user.getPassword();
-        this.authorities = Arrays.stream(user.getRoles().split(","))
-                .map(SimpleGrantedAuthority::new)
-                .collect(Collectors.toList());
+        this.authorities = user.getRoles();
         this.active = true;
     }
     @Override
