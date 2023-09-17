@@ -16,10 +16,10 @@ import java.util.Optional;
 public class TrickController {
 
     @Autowired
-    TrickRepository trickRepository;
+    private TrickRepository trickRepository;
 
     @Autowired
-    DifficultyRepository difficultyRepository;
+    private DifficultyRepository difficultyRepository;
 
     @PostMapping
     public ResponseEntity addTrick(@RequestBody Trick trickBody){
