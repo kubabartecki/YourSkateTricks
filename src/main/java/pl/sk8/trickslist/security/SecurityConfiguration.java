@@ -19,7 +19,7 @@ public class SecurityConfiguration{
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         http.csrf().disable() //.securityMatcher() to gdzie ma chronic a po authorizahttpreq to ustalasz dostepy
                 .authorizeHttpRequests()
-                .requestMatchers("/users/add")
+                .requestMatchers("/users/add", "error")
                 .permitAll()
                 .requestMatchers("/want", "/done").authenticated()
                 .anyRequest().authenticated()
