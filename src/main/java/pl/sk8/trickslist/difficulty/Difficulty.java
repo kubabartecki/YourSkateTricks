@@ -18,6 +18,11 @@ public class Difficulty {
         this.id = id;
     }
 
+    public Difficulty(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -26,7 +31,6 @@ public class Difficulty {
     @Column
     private String name;
 
-    @OneToMany(mappedBy = "difficulty")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "difficulty")
     private Set<Trick> tricks;
-
 }

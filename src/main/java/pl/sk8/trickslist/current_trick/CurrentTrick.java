@@ -1,5 +1,6 @@
 package pl.sk8.trickslist.current_trick;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 
@@ -25,8 +26,8 @@ public class CurrentTrick {
     private User user;
 
     @NonNull
-    @ManyToOne
-    @JoinColumn(name = "trick_id")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "trick_id", nullable = false)
     private Trick trick;
 
     @Column(name = "is_done")

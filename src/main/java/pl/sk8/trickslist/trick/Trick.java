@@ -1,10 +1,8 @@
 package pl.sk8.trickslist.trick;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import pl.sk8.trickslist.current_trick.CurrentTrick;
 import pl.sk8.trickslist.difficulty.Difficulty;
@@ -18,6 +16,12 @@ import java.util.Set;
 @RequiredArgsConstructor
 public class Trick {
 
+    public Trick(int id, String name, Difficulty difficulty) {
+        this.id = id;
+        this.name = name;
+        this.difficulty = difficulty;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -27,9 +31,6 @@ public class Trick {
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "difficulty_id")
+    @JoinColumn(name = "difficulty_id", nullable = false)
     private Difficulty difficulty;
-
-    @OneToMany(mappedBy = "trick")
-    private Set<CurrentTrick> currentTricks;
 }
