@@ -19,11 +19,14 @@ public class TrickController {
     private TrickRepository trickRepository;
 
     @Autowired
+    private TrickService trickService;
+
+    @Autowired
     private DifficultyRepository difficultyRepository;
 
     @PostMapping
     public ResponseEntity addTrick(@RequestBody Trick trickBody){
-        Trick trickNew = new Trick(trickBody.getName());
+        Trick trickNew = new Trick();
         List<Trick> tricksFromDb = trickRepository.findByName(trickBody.getName());
 
         if(trickBody.getName() == null)
@@ -45,8 +48,8 @@ public class TrickController {
     }
 
     @GetMapping
-    public ResponseEntity getTrick(){
-        List<Trick> tricks = trickRepository.findAll();
+    public ResponseEntity getTricks(@RequestParam(name="page", defaultValue = "1") Integer page){
+        TricksDTO tricks = trickService.getTricks(page);
         return ResponseEntity.ok(tricks);
     }
 
