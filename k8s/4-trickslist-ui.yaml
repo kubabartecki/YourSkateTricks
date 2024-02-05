@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: trickslist-ui-svc
+spec:
+  type: NodePort
+  selector:
+    app: trickslist-ui-pod
+  ports:
+    - name: app-port-mapping
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
+      nodePort: 30080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: trickslist-ui-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: trickslist-ui-pod
+  template:
+    metadata:
+      labels:
+        app: trickslist-ui-pod
+    spec:
+      containers:
+        - name: trickslist-ui
+          image: bartheme/trickslist-ui
+          ports:
+            - containerPort: 3000
+          env:
+            - name: CLIENT_SIDE_API_BASE_URL
+              value: http://localhost:18080
+            - name: SERVER_SIDE_API_BASE_URL
+              value: http://trickslist-api-svc:8080
