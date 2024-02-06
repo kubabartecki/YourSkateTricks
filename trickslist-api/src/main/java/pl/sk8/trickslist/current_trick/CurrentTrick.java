@@ -1,8 +1,6 @@
 package pl.sk8.trickslist.current_trick;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
