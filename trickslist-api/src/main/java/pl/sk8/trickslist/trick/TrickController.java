@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/tricks")
+@RequestMapping("/api/tricks")
 public class TrickController {
 
     @Autowired
@@ -48,9 +48,12 @@ public class TrickController {
     }
 
     @GetMapping
-    public ResponseEntity getTricks(@RequestParam(name="page", defaultValue = "1") Integer page){
-        TricksDTO tricks = trickService.getTricks(page);
-        return ResponseEntity.ok(tricks);
+    public ResponseEntity getTricks(@RequestParam(name="page", defaultValue = "1") Integer page,
+                                    @RequestParam(name="query", defaultValue = "") String query){
+        if(query == null || query.trim().isEmpty()) {
+            return ResponseEntity.ok(trickService.getTricks(page));
+        }
+        return ResponseEntity.ok(trickService.searchTricks(query, page));
     }
 
     @GetMapping("/{id}")
