@@ -19,11 +19,11 @@ public class SecurityConfiguration{
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         http.csrf().disable() //.securityMatcher() to gdzie ma chronic a po authorizahttpreq to ustalasz dostepy
                 .authorizeHttpRequests()
-                .requestMatchers("/users/add", "error")
+                .requestMatchers("/users/add", "error", "api/tricks")
                 .permitAll()
-                .requestMatchers("/want", "/done").authenticated()
-                .anyRequest().authenticated()
-                .and().formLogin();
+                .requestMatchers("/want", "/done").authenticated();
+                //.anyRequest().authenticated();
+                //.and().formLogin();
 
         return http.build();
     }
