@@ -10,7 +10,7 @@ import java.util.List;
 @Setter
 @Getter
 public class TricksDTO {
-    private List<Trick> data;
+    private List<TrickDTO> data;
     private long totalElements;
     private int totalPages;
     private int currentPage;
@@ -21,7 +21,7 @@ public class TricksDTO {
     private boolean hasNext;
     private boolean hasPrevious;
 
-    public TricksDTO(Page<Trick> trickPage) {
+    public TricksDTO(Page<TrickDTO> trickPage) {
         this.setData(trickPage.getContent());
         this.setTotalElements(trickPage.getTotalElements());
         this.setTotalPages(trickPage.getTotalPages());
